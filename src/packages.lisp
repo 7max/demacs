@@ -34,6 +34,7 @@
    :ensure-function
    :ensure-list
    :with-body-parts
+   :export-now-and-later
    ;; Definers
    :definer
    :available-definer-options

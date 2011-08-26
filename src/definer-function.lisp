@@ -63,7 +63,7 @@
          ,@(when (has-option-p definer #\d) `(,(declare-debug definer)))
          ,@declarations
          ,@body)
-       ,@(when (has-option-p definer #\e) `((export ',(name-of definer)))))))
+       ,@(when (has-option-p definer #\e) (export-now-and-later (name-of definer))))))
 
 
 ;;; FUNCTION DEFINER ROUTINES
@@ -151,7 +151,7 @@
              ,@(when (has-option-p definer #\d) `(,(declare-debug definer)))
              ,@declarations
              ,@forms)
-           ,@(when (has-option-p definer #\e) `((export ',name))))))))
+           ,@(when (has-option-p definer #\e) (export-now-and-later name)))))))
 
 
 ;;; TYPE DEFINER ROUTINES

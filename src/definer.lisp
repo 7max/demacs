@@ -150,3 +150,12 @@
 
 (defun has-option-p (definer option)
   (member option (options-of definer) :test #'char-equal))
+
+(defun export-now-and-later (symbols)
+  "Calls CL:EXPORT on the specified symbols and returns an EVAL-WHEN
+form that exports them at load/compile/execute time.
+
+This function should be used from all definers that export symbols 
+so that exports are visible at compile time"
+  `((eval-when (:compile-toplevel :load-toplevel :execute) 
+      (export ',symbols))))

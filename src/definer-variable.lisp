@@ -120,7 +120,7 @@
 (defmethod expand-definer ((definer load-time-constant-definer))
   (let* ((name (name-of definer))
          (variable-name
-          (intern (format nil "~:@(~s~s~)" (prefix-of definer) name))))
+          (intern (string-upcase (format nil "~:@(~s~s~)" (prefix-of definer) name)))))
     `(progn
        (eval-when (:compile-toplevel :load-toplevel :execute)
          (defvar ,variable-name)

@@ -45,7 +45,7 @@
 
 (defun get-definer (name)
   "Returns definer class for the supplied definer of NAME."
-  (or (find-class (intern (format nil "~:@(~a-definer~)" name)) :errorp nil)
+  (or (find-class (intern (string-upcase (format nil "~:@(~a-definer~)" name))) :errorp nil)
       (error "Unknown definer: `~a'." name)))
 
 (defgeneric available-definer-options (definer)

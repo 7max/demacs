@@ -47,8 +47,8 @@
             slot-spec
             (list keyword
                   (intern
-                   (format nil (string-upcase (funcall fmt-accessor definer))
-                           (first slot-spec))
+                   (string-upcase (format nil (funcall fmt-accessor definer)
+                                          (first slot-spec)))
                    
                    package))))))
    (slot-specs-of definer)))
@@ -90,7 +90,7 @@
      ,@(when (has-option-p definer #\s) (export-now-and-later (extract-slots definer)))
      ,@(when (has-option-p definer #\a) (export-now-and-later (extract-class-accessors definer)))
      ,@(when (has-option-p definer #\m)
-             (let ((make-sym (intern (format nil "~:@(make-~a~)" (name-of definer)))))
+             (let ((make-sym (intern (string-upcase (format nil "~:@(make-~a~)" (name-of definer))))))
                (with-unique-names (keys)
                  `((defun ,make-sym (&rest ,keys &key &allow-other-keys)
                      (apply #'make-instance ',(name-of definer) :allow-other-keys t ,keys))
@@ -111,15 +111,15 @@
    (accessor-format
     :accessor accessor-format-of
     :type string
-    :initform "~s-of")
+    :initform "~s-OF")
    (reader-format
     :accessor reader-format-of
     :type string
-    :initform "~s-of")
+    :initform "~s-OF")
    (writer-format
     :accessor writer-format-of
     :type string
-    :initform "~s-of")))
+    :initform "~s-OF")))
 
 (defmethod available-definer-options ((definer class-definer))
   (list #\e #\a #\s #\n #\c #\r #\w #\m))
@@ -214,7 +214,7 @@
   definer)
 
 (defun extract-struct-accessors (definer)
-  (mapcar (lambda (slot) (intern (format nil "~:@(~s-~s~)" (name-of definer) slot)))
+  (mapcar (lambda (slot) (intern (string-upcase (format nil "~:@(~s-~s~)" (name-of definer) slot))))
           (extract-slots definer)))
 
 (defmethod expand-definer ((definer struct-definer))

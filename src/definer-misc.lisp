@@ -95,7 +95,7 @@
                  `((defun ,make-sym (&rest ,keys &key &allow-other-keys)
                      (apply #'make-instance ',(name-of definer) :allow-other-keys t ,keys))
                    ,@(when (has-option-p definer #\e)
-                           (export-now-and-later ',make-sym))))))))
+                           (export-now-and-later make-sym))))))))
 
 
 ;;; CLASS DEFINER ROUTINES

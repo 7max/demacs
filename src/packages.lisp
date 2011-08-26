@@ -30,10 +30,6 @@
   (:documentation "Extensible definer macros.")
   (:export
    ;; Utilities
-   :when-let
-   :ensure-function
-   :ensure-list
-   :with-body-parts
    :export-now-and-later
    ;; Definers
    :definer
